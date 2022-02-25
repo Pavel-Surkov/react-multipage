@@ -1,67 +1,35 @@
 import React from 'react';
-import logo from '../images/logo.svg';
-import { MobileMenu } from './MobileMenu';
+import logo from '../images/logo.png';
+import logo_2x from '../images/logo@2x.png';
 import { navigationLinks } from '../helpers/variables';
 
 const Header = () => {
-	const menuElementRef = React.createRef();
-
-	const handleMenuClick = e => {
-		const menuBtn = e.target.closest('#m-menu__button');
-		const menuEl = menuElementRef.current;
-
-		if (!menuEl || !menuBtn) {
-			return;
-		}
-
-		document.documentElement.classList.toggle('is-locked');
-		menuBtn.classList.toggle('m-menu__button_close');
-		menuEl.classList.toggle('m-menu_active');
-	};
-
-	return (
-		<header className="header">
-			<div className="header-wrapper">
-				<div className="container">
-					<div className="row">
-						<div className="col-6 col-lg-3">
-							<div className="header__logo">
-								<a className="logo" href="index.html">
-									<img src={logo} alt="logo" />
-								</a>
-							</div>
-						</div>
-						<div className="col-6 col-lg-9">
-							<nav className="navigation header__navigation">
-								<ul className="d-none d-lg-flex header__navigation-list">
-									{navigationLinks.map(({ text, link }) => {
-										return (
-											<li className="header__navigation-item" key={text}>
-												<a href={link} className="link">
-													{text}
-												</a>
-											</li>
-										);
-									})}
-								</ul>
-								<button
-									id="m-menu__button"
-									className="d-lg-none m-menu__button"
-									onClick={evt => handleMenuClick(evt)}
-									aria-label="menu button"
-								>
-									<span />
-									<span />
-									<span />
-								</button>
-							</nav>
-						</div>
-					</div>
-				</div>
-			</div>
-			<MobileMenu ref={menuElementRef} />
-		</header>
-	);
+  return (
+    <header className="header">
+      <div className="header-wrapper">
+        <div className="container">
+          <nav className="nav home-main__nav">
+            <ul className="home-main__nav-list">
+              <li className="home-main__nav-item">
+                <a href="" className="home-main__nav-link"></a>
+              </li>
+            </ul>
+          </nav>
+          <a href="/" className="logo home-main__logo">
+            <img src={logo} srcSet={`${logo} 1x, ${logo_2x} 2x`} alt="" />
+          </a>
+          <nav className="navigation home-main__navigation">
+            <ul className="home-main__nav-list">
+              <li className="home-main__nav-item">
+                <a href="" className="home-main__nav-link"></a>
+              </li>
+            </ul>
+          </nav>
+        </div>
+      </div>
+      {/* <MobileMenu /> */}
+    </header>
+  );
 };
 
 export default Header;
